@@ -51,7 +51,7 @@ in U5, that is a single-unit operation.
 | Population | Opted-in visitors only | ADR-0009. No inference on non-consenting visitors, ever. |
 | Identity | Pseudonymous key issued by U2, holding no name or contact details itself | Contact details stay in the consent record; the model never sees them. Erasure breaks the key. |
 | Model | Two-model uplift or a single model with a treatment interaction term | Small data, interpretable, retrainable in minutes |
-| Placement | Cloud, weekly batch | 100 EUR/month, fixed |
+| Placement | Cloud, weekly batch | 50 EUR/month, fixed ([cost model](../03-delivery/cost-model.md)) |
 | Offer set | Written and approved by a human, always | The model chooses who sees which existing offer. It never invents an offer, a discount level or a message. |
 | Holdout | Permanent, >= 20% | It is the only way to know whether this capability is worth its existence, and it is cheap. |
 

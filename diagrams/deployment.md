@@ -71,6 +71,7 @@ flowchart TB
 | Solid line | A physical or network connection that exists in normal operation |
 | Dashed arrow | An operational procedure, not a runtime path (cold swap, pipeline promotion) |
 | Subgraph | A physical or logical boundary |
+| Zone clusters shown | A representative subset. The full estate is 6-8 nodes and 8 gate terminals (A1, A2); drawing all of them would repeat the same three shapes. Quantities are in [../03-delivery/cost-model.md](../03-delivery/cost-model.md). |
 
 ## What this diagram is asserting
 

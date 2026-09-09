@@ -133,7 +133,7 @@ Two things in this submission exist *because* of how we worked, not despite it:
 | Adversarial second model from a different vendor | Cheap, and it found real problems |
 | Recompute every number by hand | Not optional |
 | Mechanical checks over IDs and links | Free correctness |
-| Keep a rejection log while working | This page would have been impossible to write afterwards, and its absence is the gap we found in every other submission we reviewed |
+| Keep a rejection log while working | This page would have been impossible to write afterwards. Of the three other submissions we reviewed, one addresses the process at all, and it says so honestly: its account is a summary written from memory rather than a log, which is exactly the limitation we ran into ourselves and the reason we recommend instrumenting it |
 
 | Would not repeat | Reason |
 | --- | --- |

@@ -6,10 +6,11 @@
 
 ## Context
 
-The kata's theme is AI-Assisted Software Architecture. Most submissions, including the two
-others produced by our own team, answer only the first half of that: where AI sits inside
-the designed system. The second half, how the team used AI while designing, appears as a
-one-line disclaimer or not at all.
+The kata's theme is AI-Assisted Software Architecture. Most submissions answer only the
+first half of that: where AI sits inside the designed system. The second half, how the team
+used AI while designing, appears as a one-line disclaimer or not at all. Of the three other
+variants produced by our own team, two say nothing about it and one addresses it in about a
+page, candidly, and describes itself as an account written from memory rather than a log.
 
 This matters beyond scoring. A team that used a model to produce an architecture and cannot
 say where the model was wrong has no evidence that it checked.
@@ -46,14 +47,14 @@ difference between an assertion and a check very concrete.
 | A disclaimer line ("AI tools were used in preparing this document") | Says nothing verifiable and answers none of the criteria. |
 | A section inside the README | It would be read as a footnote. The kata's title puts this at the centre, so it gets its own block. |
 | A prompt log appended as an artifact | Long, unreadable, and it shows what we asked rather than what we decided. The decisions and the rejections are the useful record; the transcript is the raw material. |
-| Omitting it because the judges asked about the system, not the process | Criterion 1 (innovative use of AI) and criterion 4 (dealing with uncertainty) both read naturally as applying to the team's own use of AI, and no other submission we reviewed covers it. |
+| Omitting it because the judges asked about the system, not the process | Criterion 1 (innovative use of AI) and criterion 4 (dealing with uncertainty) both read naturally as applying to the team's own use of AI. |
 | Writing plausible examples where real ones are missing | It would be the one dishonesty that invalidates the whole document, and a reader who has used these tools would spot it. |
 
 ## Consequences
 
 **Good**
 
-- Answers the half of the kata's theme that the other submissions leave empty.
+- Answers the half of the kata's theme that submissions usually leave empty, and does it with a structured rejection log rather than a retrospective summary.
 - Forced a working practice (keeping a rejection log while designing) that improved the design itself, notably ADR-0006.
 - Gives the client's team a record of which parts of the design were most heavily model-assisted and therefore most in need of human re-checking later.
 

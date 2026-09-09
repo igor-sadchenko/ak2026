@@ -2,7 +2,7 @@
 
 ```mermaid
 flowchart TB
-  subgraph DEV["Devices (about 600)"]
+  subgraph DEV["Devices (about 300; sized for 600)"]
     SEN["Welfare sensors<br/>LoRaWAN, ~240"]
     CNT["Counting sensors<br/>~12"]
     CAM["Cameras<br/>tanks and enclosures, ~12"]

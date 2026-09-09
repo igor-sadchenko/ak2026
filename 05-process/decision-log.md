@@ -4,7 +4,10 @@ Contested forks. Each entry states the options, what we chose, who decided and w
 our answer differs from another submission in our team, that is recorded explicitly:
 disagreement between competent designs is information, and hiding it would waste it.
 
-Referenced elsewhere as D1 to D10.
+Referenced elsewhere as D1 to D13. Our teammates' variants are referred to as **A**
+(`repo/`, edge-first with strict AI discipline), **B** (`repo-andrew/`, thirteen quanta plus
+an AI platform and an agentic layer) and **C** (`repo-ivan/`, a three-lever business case
+with AI as an advisory overlay).
 
 ---
 
@@ -18,10 +21,12 @@ Referenced elsewhere as D1 to D10.
 
 **Chosen: the third.** Decided by the author of this variant. Recorded as ADR-0009.
 
-Divergence: variant B (`repo-andrew/`) chooses RFID tokens with location and family linkage
-(its ADR-013 and ADR-027) as the basis of a retention flywheel. Variant A (`repo/`) chooses
-strict anonymity (its ADR-0009). Our position sits between them deliberately: we take
-variant A's default and variant B's mechanism, gated behind consent. We think the middle
+Divergence: variant B chooses RFID tokens with location and family linkage (its ADR-013 and
+ADR-027) as the basis of a retention flywheel. Variants A and C both choose strict anonymity
+(their ADR-0009 and ADR-007). Our position sits between them deliberately: we take the A/C
+default and variant B's mechanism, gated behind consent. Note that variant C pairs its
+anonymity with a single credential covering both ticket and cashless on-site spend (its
+ADR-009), which reintroduces a linkable purchase history through a different door; see D13. We think the middle
 position is the stronger answer to a judge, because it shows the trade-off was seen rather
 than avoided in either direction. We may be wrong: variant B's flywheel argument is real,
 and if the estate's retention target cannot be met on an opted-in subset, the honest
@@ -93,10 +98,13 @@ that scenario assumes, we would adopt variant B's answer.
 **Chosen: published tiers.** Rejected AI pricing on suitability, not feasibility, in
 [../02-ai-capabilities/README.md](../02-ai-capabilities/README.md).
 
-Divergence: variant B includes dynamic pricing AI (its ADR-021). Our objection is specific:
-the estate's core problem is that too few people come, not that the ones who come pay too
-little. Pricing sophistication is a lever for a full park, and this park is a third full.
-We would revisit it once attendance passes about 12,000 per day.
+Divergence: variant B includes dynamic pricing AI (its ADR-021), and variant C ships dynamic
+family-bundle pricing in its Phase 3, gated on a full season of forecast-accuracy data. Our
+objection is specific: the estate's core problem is that too few people come, not that the
+ones who come pay too little. Pricing sophistication is a lever for a full park, and this
+park is a third full. Variant C's gating condition is the right instinct and close to ours;
+we would revisit the decision once attendance passes about 12,000 per day, which is a
+demand-side trigger rather than a data-readiness one.
 
 ---
 
@@ -133,11 +141,13 @@ is calibrated and there is evidence about what it misses. Deferred, not rejected
 
 **Chosen: no AI in Phase 0.** Recorded as ADR-0001 and ADR-0013.
 
-Divergence: neither variant A nor variant B forbids AI in a first release. This is the
-sharpest process disagreement in the three submissions, and it is the one we are most
-confident about: the cold-start arithmetic in
-[../03-delivery/implementation-plan.md](../03-delivery/implementation-plan.md) is not a
-preference.
+Convergence, for once: variant C reaches the same conclusion independently, and its Phase 1
+opens with "nothing here is AI" for the same cold-start reason. Two variants arriving at the
+same answer from different framings (ours from evaluability, theirs from funding each phase
+out of the previous one's payback) is the strongest evidence in this log that the conclusion
+is not a preference. Variants A and B do not forbid AI in a first release. The cold-start
+arithmetic in [../03-delivery/implementation-plan.md](../03-delivery/implementation-plan.md)
+is where our version of the argument is made.
 
 ---
 
@@ -168,6 +178,75 @@ capacity, which is why NFR-OPS-1 blocks phase exits and NFR-COST-1, in practice,
 
 **Chosen: a top-level block.** [../04-verification/](../04-verification/), ADR-0011.
 
-This is the decision that most defines this variant, together with
+This is the decision that most defines this submission, together with
 [../03-delivery/implementation-plan.md](../03-delivery/implementation-plan.md) and
 [how-we-used-ai.md](how-we-used-ai.md).
+
+---
+
+## D11: Predictive maintenance on the heritage rides
+
+| Option | Case for | Case against |
+| --- | --- | --- |
+| Retrofit vibration, temperature and cycle-count sensors externally, model each ride against its own baseline, raise advisory inspection recommendations only | Creates the sensor history that does not exist today; per-ride baselines handle mechanical heterogeneity; advisory-only keeps the certified inspection regime authoritative | 40 rides to instrument and maintain; a further year of baseline data before the model means anything; one more capability to keep calibrated with two engineers |
+| **Fixed certified inspection intervals plus a fault log** | The regime already exists, is legally authoritative (C5), and costs nothing to run | Misses degradation between inspections |
+
+**Chosen: intervals and a fault log**, listed as a rejected AI candidate in
+[../02-ai-capabilities/README.md](../02-ai-capabilities/README.md).
+
+Divergence: variant C designs this capability (its ADR-013 and C5) and its argument is
+better than our original rejection. We had objected that the failure cost is safety-critical
+and that a model over 40 heterogeneous historic machines is unverifiable; advisory-only
+output and per-ride baselines answer both objections cleanly, and non-invasive external
+sensors answer the heritage-modification problem we had not considered.
+
+What survives of our objection is narrower and we state it as such: it is a portfolio-size
+argument, not a design argument. A sixth capability, needing its own instrumentation
+programme and its own year of baseline data before it produces anything, competes for the
+same two engineers who must keep the welfare model calibrated. If the estate had capacity for
+one more capability, this is the one we would add, and we would adopt variant C's design for
+it rather than invent our own.
+
+---
+
+## D12: Per-enclosure baselines or per-animal identity
+
+| Option | Case for | Case against |
+| --- | --- | --- |
+| Identify individuals (PIT or RFID tags, per-animal feed stations, statistical disaggregation of shared feed scales) and baseline each animal | A sick individual in a group enclosure is detectable; the welfare signal is far sharper | Requires handling exotic and poisonous animals to tag them (F4); tags fail; multi-occupancy attribution stays partly statistical anyway; a large keeper workload |
+| **Per-enclosure environmental baselines, with the keeper as the individual-level observer** | No handling, no tags, works from day one on sensors we are installing anyway, and the keepers already know their animals individually | A single sick animal in a shared enclosure may not move the enclosure aggregate at all |
+
+**Chosen: per-enclosure**, see [../02-ai-capabilities/cap-01-animal-welfare-anomaly.md](../02-ai-capabilities/cap-01-animal-welfare-anomaly.md).
+
+Divergence: variant C tags individuals (its ADR-008), and it raises the sharpest criticism of
+our design in this log: a per-enclosure baseline is blind to the individual, which for a
+collection of 200+ animals in 55 enclosures is a real gap and not a small one. We accept the
+criticism and take the trade knowingly, for one reason: our capability is scoped as an
+enrichment layer over threshold rules, with the keeper as the individual-level observer, and
+we are not willing to justify handling venomous animals to fit tags on the strength of a
+model we have not yet shown to work. The honest sequence is to prove the enclosure-level
+model first and revisit identity if the misses it produces are individual-level ones. That
+revisit condition belongs in [cap-01](../02-ai-capabilities/cap-01-animal-welfare-anomaly.md),
+and variant C's mechanism is what we would adopt.
+
+---
+
+## D13: A single credential carrying both admission and cashless spend
+
+| Option | Case for | Case against |
+| --- | --- | --- |
+| One signed credential for gate entry and on-site payment, verified offline, queued for reconciliation | Removes real friction; the same offline mechanism we already built serves both; a strong on-site spend lever for objective O2 | It creates a per-visitor purchase history tied to an admission credential, which is a linkable behavioural record by another name; it also puts payment inside our reconciliation scope |
+| **Admission credential only; payment through an external provider at the point of sale** | Keeps NFR-SEC-1 absolute (no cardholder data, no payment reconciliation risk) and keeps the anonymous-by-default promise intact | Leaves the on-site spend lever unpulled |
+
+**Chosen: admission only.** ADR-0005, ADR-0009.
+
+Divergence: variant C builds this (its ADR-009 and capability C3) and rates it as its fastest
+payback. We think it is the most commercially attractive idea in any of the four submissions
+and the one with the least examined privacy consequence: variant C states anonymous-by-default
+as a principle (its ADR-007) while its credential accumulates exactly the linkable spend
+history that principle is meant to prevent. That is a tension to resolve, not a fault, and
+resolving it is probably a matter of separating the two balances behind different keys.
+
+Our reason for not building it is separate from the privacy point and simpler: it moves
+payment reconciliation inside our scope, which is the one thing ADR-0005 spends the most
+effort keeping out, for a team of two.

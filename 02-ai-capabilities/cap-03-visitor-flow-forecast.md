@@ -47,7 +47,7 @@ cheap, unambiguous feedback.
 | --- | --- | --- |
 | Model | Standard gradient-boosted or additive time-series model with exogenous regressors | Two days of work with a well-understood library, interpretable residuals, and no GPU. See [../03-delivery/build-vs-buy.md](../03-delivery/build-vs-buy.md). |
 | Granularity | Per zone, per hour, 1-7 days ahead | Matches the staffing decision. Forecasting per minute would be precision nobody can act on. |
-| Placement | Cloud, one nightly batch run | 90 EUR/month, fixed, independent of attendance |
+| Placement | Cloud, one nightly batch run | 60 EUR/month, fixed, independent of attendance ([cost model](../03-delivery/cost-model.md)) |
 | Output | Point forecast plus a prediction interval, per zone per hour | The operations manager staffs against the upper bound at peak and the point estimate off-peak. An interval is what makes the forecast actionable rather than merely interesting. |
 
 ## Data

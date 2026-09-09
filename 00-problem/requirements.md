@@ -44,7 +44,7 @@ Priority: `must` blocks a phase exit; `should` is tracked but does not block.
 | NFR-PERF-1 | Gate decision (scan to green light) at most 500 ms at p95, measured on the terminal. | must | Queue throughput | [FF-03](../04-verification/fitness-functions.md#ff-03) | ADR-0003 |
 | NFR-PERF-2 | An enclosure threshold breach reaches a keeper's device within 60 s while the uplink is down. | must | F4, safety | [FF-04](../04-verification/fitness-functions.md#ff-04) | ADR-0012 |
 | NFR-SCALE-1 | Sustain 15,000 admissions per day with a peak of 3,000 entries per hour. | must | F7 | [FF-05](../04-verification/fitness-functions.md#ff-05) | ADR-0002 |
-| NFR-SCALE-2 | Ingest sustained telemetry from at least 600 devices at 1 message per device per minute, with 10x burst tolerance on reconnect. | must | F12 | [FF-06](../04-verification/fitness-functions.md#ff-06) | ADR-0004 |
+| NFR-SCALE-2 | Ingest sustained telemetry from 600 devices at 1 message per device per minute, with 10x burst tolerance on reconnect. The expected fleet is about 300 (A10); the figure is deliberately sized at 2x. | must | F12 | [FF-06](../04-verification/fitness-functions.md#ff-06) | ADR-0004 |
 | NFR-DATA-1 | No telemetry loss for outages up to 72 hours; ordering preserved per device. | must | F10 | [FF-07](../04-verification/fitness-functions.md#ff-07) | ADR-0003 |
 | NFR-SEC-1 | No cardholder data is processed, stored or transmitted by our systems. | must | Cost of PCI scope | [FF-08](../04-verification/fitness-functions.md#ff-08) | ADR-0005 |
 | NFR-SEC-2 | Every device-to-cloud connection is mutually authenticated; a stolen edge node cannot read another zone's data. | must | Physical exposure | [FF-09](../04-verification/fitness-functions.md#ff-09) | ADR-0004 |

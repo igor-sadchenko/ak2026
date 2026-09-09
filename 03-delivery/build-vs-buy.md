@@ -38,7 +38,7 @@ Prices are `(assumption)`, per month unless stated, at Phase 2 scale.
 | Category | Count | Share of monthly OpEx |
 | --- | --- | --- |
 | Built by us | 8 | Team cost only, no licence |
-| Bought or managed | 15 | About 2,160/month at Phase 2 |
+| Bought or managed | 15 | About 2,100/month at Phase 2, excluding the weather feed which starts in Phase 3 |
 
 Everything we build is either the estate's domain rules or a piece small enough that
 operating a vendor's version of it would cost more attention than writing it. Everything

@@ -6,8 +6,8 @@
 
 ## Context
 
-Our own cost model says IT runs at 0.05% to 1.06% of revenue across every scenario we
-modelled, including a very pessimistic one, and AI at 0.02% to 0.24%. **Cost is not the
+Our own cost model says IT runs at 0.05% to 1.10% of revenue across every scenario we
+modelled, including a very pessimistic one, and AI at 0.01% to 0.21%. **Cost is not the
 binding constraint on this architecture; team capacity is.** Stating a hard AI budget as a
 headline constraint would therefore be dishonest about our own arithmetic.
 
@@ -32,8 +32,19 @@ The purpose is stated explicitly so nobody mistakes it: **the budget is a circui
 not a savings measure.** It catches the runaway before it becomes an incident, in a system
 where nobody is watching the billing dashboard at 3 a.m.
 
-Additionally: rate limiting per session on the assistant, and cost per capability tagged in
-billing so [FF-15](../04-verification/fitness-functions.md#ff-15) can attribute spend.
+A monthly ceiling alone is a one-shot kill switch, which is exactly the wrong shape against
+an anonymous public endpoint: an attacker who exhausts it once removes the capability for the
+rest of the calendar month. The assistant therefore also carries:
+
+| Control | Value | Reason |
+| --- | --- | --- |
+| Daily sub-budget | 1/30th of the monthly ceiling, with its own alert and its own fallback trip | A single bad day degrades one day, not one month. Recovery is automatic at midnight. |
+| Per-session rate limit | 20 questions per session (assumption) | Ordinary use never reaches it. |
+| Per-IP and per-device limits | Yes, in addition to per-session | Sessions are free to an anonymous visitor, so a per-session limit alone controls nothing. |
+| Spend anomaly detector | Alert on a day exceeding 3x the trailing 7-day median | Catches scripted abuse in hours rather than at the ceiling. |
+
+Cost per capability is tagged in billing so
+[FF-15](../04-verification/fitness-functions.md#ff-15) can attribute spend.
 
 ## Alternatives considered
 
